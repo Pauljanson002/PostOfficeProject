@@ -7,8 +7,18 @@
         <servlet-name>test</servlet-name>
         <servlet-class>controller.TestController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ticket</servlet-name>
+        <servlet-class>controller.TicketController</servlet-class>
+    </servlet>
+
+    //Mapings
     <servlet-mapping>
         <servlet-name>test</servlet-name>
         <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ticket</servlet-name>
+        <url-pattern>/ticket</url-pattern>
     </servlet-mapping>
 </web-app>

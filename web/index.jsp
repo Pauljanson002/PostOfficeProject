@@ -14,7 +14,7 @@
   <body>
   <h1>Welcome to Post Office Jaffna</h1>
   <div>
-    <div>Create a New Ticket </div>
+    <div><a href="ticket.jsp">Create a New Ticket </a></div>
   </div>
   </body>
 </html>
