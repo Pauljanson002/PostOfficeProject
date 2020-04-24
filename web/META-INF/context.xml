@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context path="/musicStore">
+
+    <!-- the PostOffice Database that contains post office public details -->
+
+
+    <Resource maxWait="10000" maxIdle="30" maxActive="100" removeAbandonedTimeout="60" removeAbandoned="true"
+              logAbandoned="true" password="root0" username="root"
+              url="jdbc:mysql://localhost:3306/postoffice?autoReconnect=true" driverClassName="com.mysql.cj.jdbc.Driver"
+              auth="Container" type="javax.sql.DataSource" name="jdbc/postOfficeDB"/>
+
+    <!-- the murach database that contains admin usernames and passwords
+
+
+    <Resource maxWait="10000" maxIdle="30" maxActive="100" removeAbandonedTimeout="60" removeAbandoned="true"
+              logAbandoned="true" password="root0" username="root"
+              url="jdbc:mysql://localhost:3306/murach?autoReconnect=true" driverClassName="com.mysql.cj.jdbc.Driver"
+              auth="Container" type="javax.sql.DataSource" name="jdbc/murachDB"/> -->
+<!--
+    <Realm debug="99" userCredCol="Password" roleNameCol="Rolename" userNameCol="Username" userRoleTable="UserRole"
+           userTable="UserPass" className="org.apache.catalina.realm.DataSourceRealm" localDataSource="true"
+           dataSourceName="jdbc/murachDB"/>
+
+           -->
+
+</Context>
