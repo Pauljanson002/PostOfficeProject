@@ -5,7 +5,7 @@ import business.Ticket;
 import java.sql.*;
 
 public class TicketDB {
-    public static void createTicket(Ticket ticket){
+    public static Ticket createTicket(Ticket ticket){
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -26,8 +26,10 @@ public class TicketDB {
             identityStatement.close();
 
             ticket.setId(ticketId);
+            return ticket;
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }finally {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);

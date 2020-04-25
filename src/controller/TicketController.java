@@ -1,8 +1,10 @@
 package controller;
 
+import business.Counter;
 import business.Customer;
 import business.Ticket;
 import business.employee.CounterStaff;
+import data.CounterDB;
 import data.CustomerDB;
 import data.TicketDB;
 
@@ -36,8 +38,20 @@ public class TicketController extends HttpServlet {
         ticket.setCounterStaff(counterStaff);
         ticket.setCustomer(customer);
         ticket.setReason(req.getParameter("service"));
-        TicketDB.createTicket(ticket);
-        getServletContext().getRequestDispatcher("/ticket.jsp").forward(req,resp);
+        ticket = TicketDB.createTicket(ticket);
+
+        Counter counter = getCounter(req.getParameter("reason"));
+
+        HttpSession session = req.getSession();
+        session.setAttribute("ticket",ticket);
+        session.setAttribute("customer",customer);
+        req.setAttribute("counter",counter);
+        getServletContext().getRequestDispatcher("/ticket_confirmed.jsp").forward(req,resp);
+    }
+
+    public Counter getCounter(String reason){
+        Counter counter = CounterDB.getCounterByReason(reason);
+        return counter;
     }
     
 }

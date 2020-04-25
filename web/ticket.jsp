@@ -27,16 +27,16 @@
         <form method="POST" action="ticket">
             <div class="form-group">
                 <label for="firstName">Your First Name :</label>
-                <input class="form-control" type="text" placeholder="Your Name" name="firstName" id="firstName"><br>
+                <input class="form-control" type="text" placeholder="Your Name" name="firstName" id="firstName" value="${customer.firstName}" ><br>
                 <label for="lastName">Your Last Name:</label>
-                <input class="form-control" type="text" placeholder="Your Last Name" name="lastName" id="lastName"><br>
+                <input class="form-control" type="text" placeholder="Your Last Name" name="lastName" id="lastName" value="${customer.lastName}"><br>
                 <label for="icNumber">Your NIC number:</label>
-                <input class="form-control" type="text" placeholder="IC number" name="icNumber" id="icNumber"><br>
+                <input class="form-control" type="text" placeholder="IC number" name="icNumber" id="icNumber" value="${customer.id}"><br>
                 <label for="service">Service required:</label>
-                <select class="form-control" id="service" name="service">
-                    <option>Send Foreign Post</option>
-                    <option>Send Telemail</option>
-                    <option>Send Parcel</option>
+                <select class="form-control" id="service" name="reason">
+                    <option value="foreign post">Send Foreign Post</option>
+                    <option value="telemail">Send Telemail</option>
+                    <option value="parcel">Send Parcel</option>
 
                 </select>
             </div>
