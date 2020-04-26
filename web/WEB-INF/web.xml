@@ -32,6 +32,11 @@
         <url-pattern>/staff</url-pattern>
     </servlet-mapping>
 
+    
+    <!--Listeners -->
+    <listener>
+        <listener-class>controller.CounterContextListener</listener-class>
+    </listener>
 
     <!-- Security Roles -->
     <security-role>

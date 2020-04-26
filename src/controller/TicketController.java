@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class TicketController extends HttpServlet {
     @Override
@@ -41,7 +42,7 @@ public class TicketController extends HttpServlet {
         ticket = TicketDB.createTicket(ticket);
 
         Counter counter = getCounter(req.getParameter("reason"));
-
+        counter.addTicket(ticket);
         HttpSession session = req.getSession();
         session.setAttribute("ticket",ticket);
         session.setAttribute("customer",customer);
@@ -50,8 +51,14 @@ public class TicketController extends HttpServlet {
     }
 
     public Counter getCounter(String reason){
-        Counter counter = CounterDB.getCounterByReason(reason);
-        return counter;
+//        Counter counter = CounterDB.getCounterByReason(reason);
+        ArrayList<Counter> counters = (ArrayList<Counter>) getServletContext().getAttribute("counters");
+        for(Counter c: counters){
+            if (c.getReason().equals(reason)){
+                return c;
+            }
+        }
+        return null;
     }
     
 }

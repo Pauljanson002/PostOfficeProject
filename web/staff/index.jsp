@@ -18,15 +18,15 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h5>Available Tickets: 0 </h5>
+            <h5>Available Tickets: <c:out value="${counter.availableTickets}"/> </h5>
             <button type="button" class="btn btn-primary">
                 Process a ticket
             </button>
         </div>
         <div class="col">
             <h5>Hello User : <c:out value="${staff.firstName}"/> <c:out value="${staff.lastName}"/></h5>
-            <h5>Counter number : <c:out value="${staff.counterId}"/></h5>
-            <h5>Counter name :<c:out value="TBF"/> </h5>
+            <h5>Counter number : <c:out value="${counter.number}"/></h5>
+            <h5>Counter name :<c:out value="${counter.reason}"/> </h5>
         </div>
         <div class="row">
             <div class="col">

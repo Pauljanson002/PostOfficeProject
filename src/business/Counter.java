@@ -10,9 +10,19 @@ public class Counter {
     private CounterStaff staff;
     private String reason;
     private LinkedList<Ticket> ticketQueue;
+    private int availableTickets;
+
+    public int getAvailableTickets() {
+        return availableTickets;
+    }
+
+    public void setAvailableTickets(int availableTickets) {
+        this.availableTickets = availableTickets;
+    }
 
     public Counter() {
         ticketQueue = new LinkedList<Ticket>();
+        availableTickets = 0;
     }
 
     public int getNumber() {
@@ -40,8 +50,11 @@ public class Counter {
     }
     public void addTicket(Ticket ticket){
         ticketQueue.add(ticket);
+        availableTickets++;
     }
     public Ticket removeTicket(){
+        availableTickets--;
         return  ticketQueue.remove();
+
     }
 }
