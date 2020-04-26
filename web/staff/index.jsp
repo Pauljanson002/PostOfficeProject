@@ -24,13 +24,15 @@
             </button>
         </div>
         <div class="col">
-            <h5>Hello User !</h5>
-            <h5>Counter number : </h5>
-            <h5>Counter name : </h5>
+            <h5>Hello User : <c:out value="${staff.firstName}"/> <c:out value="${staff.lastName}"/></h5>
+            <h5>Counter number : <c:out value="${staff.counterId}"/></h5>
+            <h5>Counter name :<c:out value="TBF"/> </h5>
         </div>
         <div class="row">
             <div class="col">
-
+                <a href=<c:url value="/logout.jsp"/> >
+                    <button type="button">Logout</button>
+                </a>
             </div>
         </div>
 

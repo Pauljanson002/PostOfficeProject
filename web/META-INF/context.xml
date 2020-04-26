@@ -17,11 +17,11 @@
               logAbandoned="true" password="root0" username="root"
               url="jdbc:mysql://localhost:3306/murach?autoReconnect=true" driverClassName="com.mysql.cj.jdbc.Driver"
               auth="Container" type="javax.sql.DataSource" name="jdbc/murachDB"/> -->
-<!--
-    <Realm debug="99" userCredCol="Password" roleNameCol="Rolename" userNameCol="Username" userRoleTable="UserRole"
-           userTable="UserPass" className="org.apache.catalina.realm.DataSourceRealm" localDataSource="true"
-           dataSourceName="jdbc/murachDB"/>
 
-           -->
+    <Realm debug="99" userCredCol="Password" roleNameCol="userRole" userNameCol="Username" userRoleTable="Staffs"
+           userTable="StaffPass" className="org.apache.catalina.realm.DataSourceRealm" localDataSource="true"
+           dataSourceName="jdbc/postOfficeDB"/>
+
+
 
 </Context>

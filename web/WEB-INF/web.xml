@@ -13,6 +13,10 @@
         <servlet-name>ticket</servlet-name>
         <servlet-class>controller.TicketController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>staff</servlet-name>
+        <servlet-class>controller.StaffController</servlet-class>
+    </servlet>
 
     <!-- Mappings-->
     <servlet-mapping>
@@ -23,12 +27,16 @@
         <servlet-name>ticket</servlet-name>
         <url-pattern>/ticket</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>staff</servlet-name>
+        <url-pattern>/staff</url-pattern>
+    </servlet-mapping>
 
 
     <!-- Security Roles -->
     <security-role>
         <description>Counter Staffs</description>
-        <role-name>staff</role-name>
+        <role-name>counterStaff</role-name>
     </security-role>
 
     <!--Security Constraints -->
@@ -38,13 +46,17 @@
             <url-pattern>/staff/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>staff</role-name>
+            <role-name>counterStaff</role-name>
         </auth-constraint>
     </security-constraint>
 
     <!--Login Configurations -->
     <login-config>
-        <auth-method>BASIC</auth-method>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/error.jsp</form-error-page>
+        </form-login-config>
     </login-config>
 
     <session-config>
