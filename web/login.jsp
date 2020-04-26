@@ -9,20 +9,21 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <section>
-
-    <h1>Login Form</h1>
-    <p>Please enter a username and password to continue.</p>
-    <form action="j_security_check" method="post">
-        <label>Username</label>
-        <input type="text" name="j_username"><br>
-        <label>Password</label>
-        <input type="password" name="j_password"><br>
-        <label>&nbsp;</label>
-        <input type="submit" value="Login">
-    </form>
-
+    <div class="container">
+        <h1>Login Form</h1>
+        <p>Please enter a username and password to continue.</p>
+        <form action="j_security_check" method="post">
+            <label>Username</label>
+            <input type="text" name="j_username"><br>
+            <label>Password</label>
+            <input type="password" name="j_password"><br>
+            <label>&nbsp;</label>
+            <input type="submit" value="Login">
+        </form>
+    </div>
 </section>
 
 </html>
