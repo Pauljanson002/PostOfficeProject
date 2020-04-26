@@ -20,6 +20,9 @@
     <a href="ticket.jsp">
     <button type="button" class="btn btn-primary btn-lg">Create a New Ticket </button>
     </a>
+    <a href="<c:url value='staff'/>">
+      <button type="button" class="btn btn-primary btn-lg">I'm a staff</button>
+    </a>
   </div>
   </div>
   </body>
