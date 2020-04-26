@@ -15,10 +15,13 @@
   </head>
   <body>
   <div class="container">
-  <h1>Welcome to Post Office Jaffna</h1>
+  <h1 class="mx-auto">Welcome to Post Office Jaffna</h1>
   <div class="mx-auto">
     <a href="ticket.jsp">
     <button type="button" class="btn btn-primary btn-lg">Create a New Ticket </button>
+    </a>
+    <a href="<c:url value='staff'/>">
+      <button type="button" class="btn btn-primary btn-lg">I'm a staff</button>
     </a>
   </div>
   </div>

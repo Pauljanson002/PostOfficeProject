@@ -2,15 +2,17 @@ package business;
 
 import business.employee.CounterStaff;
 
+import java.util.LinkedList;
 
 
 public class Counter {
     private int number;
     private CounterStaff staff;
     private String reason;
+    private LinkedList<Ticket> ticketQueue;
 
     public Counter() {
-
+        ticketQueue = new LinkedList<Ticket>();
     }
 
     public int getNumber() {
@@ -35,5 +37,11 @@ public class Counter {
 
     public void setStaff(CounterStaff staff) {
         this.staff = staff;
+    }
+    public void addTicket(Ticket ticket){
+        ticketQueue.add(ticket);
+    }
+    public Ticket removeTicket(){
+        return  ticketQueue.remove();
     }
 }
