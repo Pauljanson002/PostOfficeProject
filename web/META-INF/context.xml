@@ -21,6 +21,9 @@
     <Realm debug="99" userCredCol="Password" roleNameCol="userRole" userNameCol="Username" userRoleTable="Staffs"
            userTable="StaffPass" className="org.apache.catalina.realm.DataSourceRealm" localDataSource="true"
            dataSourceName="jdbc/postOfficeDB"/>
+    <Realm debug="99" userNameCol="Username" userCredCol="Password" roleNameCol="rolename" userRoleTable="staffrole" userTable="StaffPass"
+           className="org.apache.catalina.realm.DataSourceRealm" localDataSource="true"
+           dataSourceName="jdbc/postOfficeDB"/>
 
 
 

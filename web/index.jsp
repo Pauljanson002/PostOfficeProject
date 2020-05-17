@@ -15,9 +15,11 @@
   </head>
   <body>
   <div class="container">
+  <a href="<c:url value='/'/>" style="text-decoration: none">
   <h1 class="mx-auto">Welcome to Post Office Jaffna</h1>
+  </a>
   <div class="mx-auto">
-    <a href="ticket.jsp">
+    <a href="<c:url value='/customer/index.jsp'/>">
     <button type="button" class="btn btn-primary btn-lg">Create a New Ticket </button>
     </a>
     <a href="<c:url value='staff'/>">

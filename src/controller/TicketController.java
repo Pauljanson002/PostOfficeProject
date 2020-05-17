@@ -47,7 +47,7 @@ public class TicketController extends HttpServlet {
         session.setAttribute("ticket",ticket);
         session.setAttribute("customer",customer);
         req.setAttribute("counter",counter);
-        getServletContext().getRequestDispatcher("/ticket_confirmed.jsp").forward(req,resp);
+        getServletContext().getRequestDispatcher("/customer/ticket_confirmed.jsp").forward(req,resp);
     }
 
     public Counter getCounter(String reason){
