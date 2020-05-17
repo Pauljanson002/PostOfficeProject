@@ -25,8 +25,8 @@
         </p>
     </div>
     <div>
-        <a href="ticket.jsp">Create a new ticket </a><br>
-        Clear session
+        <a href="index.jsp">Create a new ticket </a><br>
+        <a href="invalidate.jsp">Clear session</a>
     </div>
 </div>
 

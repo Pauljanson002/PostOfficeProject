@@ -7,8 +7,17 @@ public class Staff {
     private String AddressLine;
     private String City;
     private String salary;
+    private String userName;
 
     public Staff() {
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getId() {

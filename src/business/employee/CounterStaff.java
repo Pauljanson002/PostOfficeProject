@@ -1,13 +1,15 @@
 package business.employee;
 
-public class CounterStaff  extends Employee{
-    private int counterId;
+import business.Counter;
 
-    public int getCounterId() {
-        return counterId;
+public class CounterStaff  extends Employee{
+    Counter counter ;
+
+    public Counter getCounter() {
+        return counter;
     }
 
-    public void setCounterId(int counterId) {
-        this.counterId = counterId;
+    public void setCounter(Counter counter) {
+        this.counter = counter;
     }
 }

@@ -14,9 +14,18 @@
         <servlet-class>controller.TicketController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ticketProcess</servlet-name>
+        <servlet-class>controller.TicketProcessController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>staff</servlet-name>
         <servlet-class>controller.StaffController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>master</servlet-name>
+        <servlet-class>controller.MasterController</servlet-class>
+    </servlet>
+
 
     <!-- Mappings-->
     <servlet-mapping>
@@ -25,18 +34,35 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ticket</servlet-name>
-        <url-pattern>/ticket</url-pattern>
+        <url-pattern>/customer/ticket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ticketProcess</servlet-name>
+        <url-pattern>/staff/process</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>staff</servlet-name>
         <url-pattern>/staff</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>master</servlet-name>
+        <url-pattern>/master</url-pattern>
+    </servlet-mapping>
 
+    
+    <!--Listeners -->
+    <listener>
+        <listener-class>controller.CounterContextListener</listener-class>
+    </listener>
 
     <!-- Security Roles -->
     <security-role>
         <description>Counter Staffs</description>
         <role-name>counterStaff</role-name>
+    </security-role>
+    <security-role>
+        <description>Post Master</description>
+        <role-name>postMaster</role-name>
     </security-role>
 
     <!--Security Constraints -->
@@ -47,6 +73,16 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>counterStaff</role-name>
+            <role-name>postMaster</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>PostMaster</web-resource-name>
+            <url-pattern>/master/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>postMaster</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -59,6 +95,9 @@
         </form-login-config>
     </login-config>
 
+    <welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
     <session-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
