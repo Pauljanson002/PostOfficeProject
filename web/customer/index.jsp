@@ -1,49 +1,44 @@
 <%--
   Created by IntelliJ IDEA.
   User: Paul Janson
-  Date: 4/24/2020
-  Time: 8:59 PM
+  Date: 6/7/2020
+  Time: 10:14 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="container">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="header.jsp"%>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dashboard</h1>
 
-
-    <h1 class="text-center">Welcome to Post Office Jaffna</h1>
-    <h5 class="my-3">Please use the following form to open a ticket</h5>
-
-
-    <div class="my-4">
-        <form method="POST" action="ticket">
-            <div class="form-group">
-                <label for="firstName">Your First Name :</label>
-                <input class="form-control" type="text" placeholder="Your Name" name="firstName" id="firstName" value="${customer.firstName}" ><br>
-                <label for="lastName">Your Last Name:</label>
-                <input class="form-control" type="text" placeholder="Your Last Name" name="lastName" id="lastName" value="${customer.lastName}"><br>
-                <label for="icNumber">Your NIC number:</label>
-                <input class="form-control" type="text" placeholder="IC number" name="icNumber" id="icNumber" value="${customer.id}"><br>
-                <label for="service">Service required:</label>
-                <select class="form-control" id="service" name="reason">
-                    <option value="foreign post">Send Foreign Post</option>
-                    <option value="telemail">Send Telemail</option>
-                    <option value="parcel">Send Parcel</option>
-
-                </select>
             </div>
-            <button class="btn btn-primary" type="submit">Open a ticket</button>
 
-        </form>
-    </div>
-</div>
-</body>
-</html>
+
+
+            <h2>Last Activities </h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1,001</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </main>
+<%@include file="footer.jsp"%>

@@ -1,39 +1,52 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Paul Janson
-  Date: 4/29/2020
-  Time: 9:33 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@include file="header.jsp"%>
 
-<html>
-<head>
-    <title>Welcome ${pageContext.request.userPrincipal.name}</title>
-    <link rel="stylesheet" href="<c:url value='/styles/bootstrap.css'/>">
-</head>
-<body>
-<h1>Welcome ${pageContext.request.userPrincipal.name}</h1>
-<input name="action" hidden type="text" value="show">
-<div class="container">
+            <!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">DashBoard</h1>
+    <p class="mb-4">This is the overview of the current progress </p>
+
+    <!-- Content Row -->
     <div class="row">
-        <div class="col">
-            <a href="<c:url value='/master?action=show'/>">
-                <button class="btn btn-primary">Show all employees</button>
-            </a>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary">Create a new employee</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary">Update an employee information </button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary">Remove an employee </button>
-        </div>
-    </div>
-</div>
 
-</body>
-</html>
+        <div class="col-xl-8 col-lg-7">
+
+            <!-- Area Chart -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Monthly Sales</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="myAreaChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Tickets Processed</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="myTicketsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+<!-- End of Main Content -->
+
+<%@include file="footer.jsp"%>
+

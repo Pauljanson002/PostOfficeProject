@@ -4,8 +4,10 @@ import business.Counter;
 import business.Customer;
 import business.Ticket;
 import business.employee.CounterStaff;
+import business.employee.Staff;
 import data.CounterDB;
 import data.CustomerDB;
+import data.StaffDB;
 import data.TicketDB;
 
 import javax.servlet.ServletException;
@@ -15,39 +17,39 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TicketController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         Ticket ticket = new Ticket();
+        int counterID = Integer.parseInt(req.getParameter("counter"));
 
 
         // Just for now
-        CounterStaff counterStaff = new CounterStaff();
-        counterStaff.setId(1);
-        Customer customer = CustomerDB.selectCustomer(Integer.parseInt(req.getParameter("icNumber")));
-        if(customer == null){
-            System.out.println("No customer found");
-            customer  = new Customer();
-            customer.setId(Integer.parseInt(req.getParameter("icNumber")));
-            customer.setFirstName(req.getParameter("firstName"));
-            customer.setLastName(req.getParameter("lastName"));
-            CustomerDB.createCustomer(customer);
+        Staff staff = getStaffWithCounterID(counterID);
 
-        }
-        //
-        ticket.setCounterStaff(counterStaff);
+        Customer customer = (Customer) session.getAttribute("customer");
+
+        ticket.setStaff(staff);
         ticket.setCustomer(customer);
-        ticket.setReason(req.getParameter("service"));
-        ticket = TicketDB.createTicket(ticket);
-
-        Counter counter = getCounter(req.getParameter("reason"));
-        counter.addTicket(ticket);
-        HttpSession session = req.getSession();
-        session.setAttribute("ticket",ticket);
-        session.setAttribute("customer",customer);
-        req.setAttribute("counter",counter);
+        ticket.setReason(CounterDB.selectCounterByNumber(counterID).getReason());
+        ticket.setCounterId(counterID);
+        ticket.setDate(new java.sql.Date(new Date().getTime()));
+        TicketDB.createTicket(ticket);
+         req.setAttribute("ticket",ticket);
         getServletContext().getRequestDispatcher("/customer/ticket_confirmed.jsp").forward(req,resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String url = "/customer/tickets.jsp";
+        Customer customer = (Customer) session.getAttribute("customer");
+        ArrayList<Ticket> tickets = TicketDB.selectTicketswithCustomerId(customer.getId());
+        req.setAttribute("tickets",tickets);
+        req.getServletContext().getRequestDispatcher(url).forward(req,resp);
     }
 
     public Counter getCounter(String reason){
@@ -59,6 +61,9 @@ public class TicketController extends HttpServlet {
             }
         }
         return null;
+    }
+    private Staff getStaffWithCounterID(int counterId){
+        return StaffDB.selectStaffWithCounterID(counterId);
     }
     
 }

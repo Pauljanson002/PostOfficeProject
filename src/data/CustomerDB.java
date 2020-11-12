@@ -2,10 +2,7 @@ package data;
 
 import business.Customer;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class CustomerDB {
     public static Customer selectCustomer(int customerId){
@@ -27,6 +24,7 @@ public class CustomerDB {
                 customer.setLastName(rs.getString("lastName"));
                 return customer;
             }else{
+                System.out.println("Customer not found");
                 return null;
             }
         } catch (SQLException e) {
@@ -39,16 +37,18 @@ public class CustomerDB {
             pool.freeConnection(connection);
         }
     }
-    public static void createCustomer(Customer customer){
+    public static void createCustomer(Customer customer,String password){
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
-        String query = "insert into customers (id,firstName,lastName) values (?,?,?)";
+        String query = "insert into customers (id,firstName,lastName,passWord,roleName) values (?,?,?,?,?)";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1,customer.getId());
             ps.setString(2,customer.getFirstName());
             ps.setString(3,customer.getLastName());
+            ps.setString(4,password);
+            ps.setString(5,"customer");
             ps.executeUpdate();
             System.out.println("Customer created successfully ");
 
@@ -57,6 +57,43 @@ public class CustomerDB {
         }finally {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
+        }
+    }
+    public static void update(Customer customer,String passWord){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        String query = "update customers set firstName=?,lastName=?,userName=?,passWord=? where id=?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1,customer.getFirstName());
+            ps.setString(2,customer.getLastName());
+            ps.setString(3,customer.getUserName());
+            ps.setString(4,passWord);
+            ps.setInt(5,customer.getId());
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    public static void deleteCustomer(int id){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        String query = "delete from customers where id = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1,id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -5,6 +5,10 @@ import business.Counter;
 public class CounterStaff  extends Employee{
     Counter counter ;
 
+    public CounterStaff() {
+        this.setRoleName("Counter Staff");
+    }
+
     public Counter getCounter() {
         return counter;
     }

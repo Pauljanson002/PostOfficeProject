@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context path="/PostOfficeInformationSystem">
+
+    <!-- the PostOffice Database that contains post office public details -->
+
+
+    <Resource maxWait="10000" maxIdle="30" maxActive="100" removeAbandonedTimeout="60" removeAbandoned="true"
+              logAbandoned="true" password="root0" username="root"
+              url="jdbc:mysql://localhost:3306/postoffice?autoReconnect=true" driverClassName="com.mysql.cj.jdbc.Driver"
+              auth="Container" type="javax.sql.DataSource" name="jdbc/postOfficeDB"/>
+
+    <!-- the murach database that contains admin usernames and passwords
+
+
+    <Resource maxWait="10000" maxIdle="30" maxActive="100" removeAbandonedTimeout="60" removeAbandoned="true"
+              logAbandoned="true" password="root0" username="root"
+              url="jdbc:mysql://localhost:3306/murach?autoReconnect=true" driverClassName="com.mysql.cj.jdbc.Driver"
+              auth="Container" type="javax.sql.DataSource" name="jdbc/murachDB"/> -->
+
+
+    <Realm debug="99" userNameCol="id" userCredCol="passWord" roleNameCol="roleName" userRoleTable="customers" userTable="customers"
+           className="org.apache.catalina.realm.DataSourceRealm" localDataSource="true"
+           dataSourceName="jdbc/postOfficeDB"/>
+
+
+
+</Context>

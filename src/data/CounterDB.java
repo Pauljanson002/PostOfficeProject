@@ -11,36 +11,37 @@ import java.util.ArrayList;
 
 public class CounterDB {
 
-//    public static Counter getCounterByReason(String reason){
-//        ConnectionPool pool = ConnectionPool.getInstance();
-//        Connection connection = pool.getConnection();
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
-//        String query = "select * from counters where reason=?";
-//        Counter counter = null;
-//        try {
-//            ps = connection.prepareStatement(query);
-//            ps.setString(1,reason);
-//            rs = ps.executeQuery();
-//            if(rs.next()){
-//                counter = new Counter();
-//                counter.setNumber(rs.getInt("number"));
-//                int staffId = rs.getInt("staffId");
-//                counter.setStaff(null);
-//                // Others
-//                counter.setReason(rs.getString("reason"));
-//            }
-//            return counter;
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return null;
-//        }finally {
-//            DBUtil.closeResultSet(rs);
-//            DBUtil.closePreparedStatement(ps);
-//            pool.freeConnection(connection);
-//        }
-//    }
+    public static Counter selectCounterByNumber(int number){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        String query = "select * from counters where number = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1,number);
+            rs = ps.executeQuery();
+            Counter counter = new Counter();
+            while(rs.next()){
+
+                counter.setNumber(rs.getInt("number"));
+                counter.setStaff(StaffDB.selectStaffwithId(rs.getInt("staffId")));
+                counter.setReason(rs.getString("reason"));
+
+            }
+            return counter;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
     public static ArrayList<Counter> selectAllCounters(){
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
