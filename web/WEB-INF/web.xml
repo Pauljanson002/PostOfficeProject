@@ -5,10 +5,7 @@
          version="4.0">
 
     <!-- Servelets -->
-    <servlet>
-        <servlet-name>test</servlet-name>
-        <servlet-class>controller.TestController</servlet-class>
-    </servlet>
+
     <servlet>
         <servlet-name>ticket</servlet-name>
         <servlet-class>controller.TicketController</servlet-class>
@@ -25,13 +22,16 @@
         <servlet-name>master</servlet-name>
         <servlet-class>controller.MasterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>customer</servlet-name>
+        <servlet-class>controller.CustomerController</servlet-class>
+    </servlet>
+
+
 
 
     <!-- Mappings-->
-    <servlet-mapping>
-        <servlet-name>test</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>ticket</servlet-name>
         <url-pattern>/customer/ticket</url-pattern>
@@ -43,11 +43,22 @@
     <servlet-mapping>
         <servlet-name>staff</servlet-name>
         <url-pattern>/staff</url-pattern>
+        <url-pattern>/sales</url-pattern>
+        <url-pattern>/sales/view</url-pattern>
+        <url-pattern>/sales/process</url-pattern>
+        <url-pattern>/sales/add</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>master</servlet-name>
         <url-pattern>/master</url-pattern>
+        <url-pattern>/master/employees</url-pattern>
+        <url-pattern>/master/employees/add</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>customer</servlet-name>
+        <url-pattern>/customer</url-pattern>
+    </servlet-mapping>
+
 
     
     <!--Listeners -->
@@ -63,6 +74,10 @@
     <security-role>
         <description>Post Master</description>
         <role-name>postMaster</role-name>
+    </security-role>
+    <security-role>
+        <description>Sales Person</description>
+        <role-name>salesPerson</role-name>
     </security-role>
 
     <!--Security Constraints -->
@@ -85,13 +100,23 @@
             <role-name>postMaster</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Sales</web-resource-name>
+            <url-pattern>/sales/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>postMaster</role-name>
+            <role-name>salesPerson</role-name>
+        </auth-constraint>
+    </security-constraint>
 
     <!--Login Configurations -->
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
-            <form-login-page>/login.jsp</form-login-page>
-            <form-error-page>/error.jsp</form-error-page>
+            <form-login-page>/auth/login.jsp</form-login-page>
+            <form-error-page>/auth/error.jsp</form-error-page>
         </form-login-config>
     </login-config>
 
@@ -101,4 +126,14 @@
     <session-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorPages/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/errorPages/403.jsp</location>
+    </error-page>
+
 </web-app>

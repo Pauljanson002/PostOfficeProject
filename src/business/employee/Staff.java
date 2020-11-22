@@ -8,6 +8,15 @@ public class Staff {
     private String City;
     private String salary;
     private String userName;
+    private String roleName;
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 
     public Staff() {
     }

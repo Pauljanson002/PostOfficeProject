@@ -13,6 +13,7 @@ public class Post {
     private String toAddress;
     private String fromAddress;
 
+
     public Post() {
     }
 

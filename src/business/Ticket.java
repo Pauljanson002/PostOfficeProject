@@ -1,14 +1,30 @@
 package business;
 
-import business.employee.CounterStaff;
+import business.employee.Staff;
+import business.ticketState.Open;
+import business.ticketState.State;
+
+import java.sql.Date;
 
 public class Ticket {
     private int id;
-    private CounterStaff counterStaff;
+    private Date date;
+    private Staff staff;
+    private int counterId;
     private Customer customer;
     private String reason;
+    private State state;
 
     public Ticket() {
+        state = Open.getInstance();
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public int getId() {
@@ -19,12 +35,12 @@ public class Ticket {
         this.id = id;
     }
 
-    public CounterStaff getCounterStaff() {
-        return counterStaff;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setCounterStaff(CounterStaff counterStaff) {
-        this.counterStaff = counterStaff;
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     public Customer getCustomer() {
@@ -41,5 +57,21 @@ public class Ticket {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public int getCounterId() {
+        return counterId;
+    }
+
+    public void setCounterId(int counterId) {
+        this.counterId = counterId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
